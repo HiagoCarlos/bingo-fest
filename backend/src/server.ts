@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
@@ -50,3 +51,16 @@ setupGameSockets(io);
 server.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+if (process.env.NODE_ENV === 'production') {
+  // 1. Aponta para a pasta onde o Vite gerou o build do Frontend
+  const frontendPath = path.join(__dirname, '../../frontend/dist');
+  
+  // 2. Diz pro Express liberar o acesso aos arquivos (css, imagens, js)
+  app.use(express.static(frontendPath));
+
+  // 3. Qualquer link que o usuário digitar, o Express manda a tela do React (Home)
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(frontendPath, 'index.html'));
+  });
+}
