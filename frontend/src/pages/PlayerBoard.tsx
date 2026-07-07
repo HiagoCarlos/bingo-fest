@@ -15,7 +15,7 @@ interface ChatMessage { sender: string; text: string; isSystem?: boolean; }
 export function PlayerBoard() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { socket, isConnected } = useSocket();
+  const { socket } = useSocket();
   const { announceBall } = useBingoAudio();
   const { playClick, playError, playGoal } = useRetroAudio();
 
@@ -83,7 +83,7 @@ export function PlayerBoard() {
         }
       });
 
-      socket.on('bingo_invalid', (msg: string) => {
+      socket.on('bingo_invalid', (_msg: string) => {
         playError();
         setCustomAlert("OLHA A COBRA! É MENTIRA! Sua cartela ainda não bateu.");
       });

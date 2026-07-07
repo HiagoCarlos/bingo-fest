@@ -5,7 +5,6 @@ import { api } from '../services/api';
 import { useRetroAudio } from '../hooks/useRetroAudio';
 
 import logoGame from '../assets/Logo_Game.png';
-import avatarDireito from '../assets/direito.png';
 import arraiaMusic from '../assets/arraia.mp3';
 
 export function Home() {
