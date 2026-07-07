@@ -83,7 +83,7 @@ export function PlayerBoard() {
         }
       });
 
-      socket.on('bingo_invalid', (_msg: string) => {
+      socket.on('bingo_invalid', () => {
         playError();
         setCustomAlert("OLHA A COBRA! É MENTIRA! Sua cartela ainda não bateu.");
       });
