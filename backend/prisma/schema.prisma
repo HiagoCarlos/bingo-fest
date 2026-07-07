@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Room {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  status    Status   @default(WAITING)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  players   Player[]
+  draws     Draw[]
+}
+
+model Player {
+  id        String   @id @default(uuid())
+  habboNick String
+  socketId  String?
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  card      Json
+  isWinner  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@unique([habboNick, roomId])
+}
+
+model Draw {
+  id        String   @id @default(uuid())
+  roomId    String
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  ball      String
+  drawnAt   DateTime @default(now())
+}
+
+enum Status {
+  WAITING
+  PLAYING
+  FINISHED
+}

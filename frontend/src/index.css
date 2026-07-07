@@ -1,0 +1,148 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: 'Volter';
+  src: url('./assets/volter-bold-goldfish.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  background-color: #fdf6e3; 
+  color: #333;
+  -webkit-font-smoothing: none;
+  overflow-x: hidden;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* 🏁 Toalha de Mesa Xadrez */
+.bg-xadrez {
+  background-image: 
+    linear-gradient(rgba(185, 28, 28, 0.06) 50%, transparent 50%), 
+    linear-gradient(90deg, rgba(185, 28, 28, 0.06) 50%, transparent 50%);
+  background-size: 40px 40px;
+}
+
+/* 🪵 Placas de Madeira Rústica */
+.wood-panel {
+  background-color: #c98a4b; 
+  border: 4px solid #5c2e0b; 
+  box-shadow: inset 0 0 15px rgba(92, 46, 11, 0.4), 8px 8px 0px rgba(0,0,0,0.15);
+}
+
+.wood-dark {
+  background-color: #8b4513;
+  border: 4px solid #3e1b04;
+}
+
+/* 📜 Papel de Cordel */
+.cordel-paper {
+  background-color: #f4eacd;
+  border: 3px dashed #a05a2c;
+  box-shadow: 4px 4px 0px rgba(160, 90, 44, 0.2);
+  position: relative;
+}
+
+/* 🎀 Faixas de Título */
+.title-ribbon {
+  color: white;
+  border: 3px solid #3e1b04;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+  padding: 6px 16px;
+  display: inline-block;
+  margin-bottom: -15px;
+  position: relative;
+  z-index: 10;
+}
+.ribbon-red { background-color: #b91c1c; transform: rotate(-2deg); }
+.ribbon-green { background-color: #16a34a; transform: rotate(2deg); }
+.ribbon-blue { background-color: #1d4ed8; transform: rotate(-1deg); }
+.ribbon-orange { background-color: #ea580c; transform: rotate(1deg); }
+
+
+/* ========================================= */
+/* 🔥 EFEITOS ESPECIAIS JUNINOS (ANIMAÇÕES)  */
+/* ========================================= */
+
+/* 1. Luzes Pisca-Pisca de Gambiarra */
+@keyframes blinkFairy {
+  0%, 100% { opacity: 0.4; background-color: #fbbf24; box-shadow: 0 0 2px #fbbf24; }
+  50% { opacity: 1; background-color: #ef4444; box-shadow: 0 0 10px #ef4444; }
+}
+@keyframes blinkFairyAlt {
+  0%, 100% { opacity: 1; background-color: #3b82f6; box-shadow: 0 0 10px #3b82f6; }
+  50% { opacity: 0.4; background-color: #10b981; box-shadow: 0 0 2px #10b981; }
+}
+.fairy-light-1 { animation: blinkFairy 1s infinite; }
+.fairy-light-2 { animation: blinkFairyAlt 1.2s infinite; }
+
+/* 2. Balões Juninos Subindo no Fundo */
+@keyframes floatLantern {
+  0% { transform: translateY(110vh) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-20vh) translateX(50px) rotate(15deg); opacity: 0; }
+}
+.lantern {
+  position: fixed;
+  font-size: 24px;
+  bottom: -50px;
+  pointer-events: none;
+  z-index: 1;
+  animation: floatLantern 15s linear infinite;
+}
+
+/* 3. Partículas de Brasa/Fogo Subindo */
+@keyframes floatEmbers {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { transform: translateY(-150px) translateX(20px) scale(0.2); opacity: 0; }
+}
+.ember-particle {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background-color: #ea580c;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ff781e;
+  animation: floatEmbers 2s ease-out infinite;
+}
+
+/* 4. Botão de Bingo Pulsando em Chamas */
+@keyframes pulseFire {
+  0%, 100% { box-shadow: 0 0 10px rgba(22, 163, 74, 0.6); }
+  50% { box-shadow: 0 0 25px rgba(22, 163, 74, 1); transform: scale(1.01); }
+}
+.btn-bingo-pulse {
+  animation: pulseFire 1.5s infinite;
+}
+
+/* 5. Milho Pipocando na Cartela */
+@keyframes popPedra {
+  0% { transform: scale(0.5) rotate(-10deg); }
+  50% { transform: scale(1.2) rotate(10deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.animate-pop { animation: popPedra 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+@keyframes markFeijao {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); background-color: #fbbf24; box-shadow: 0 0 15px #fbbf24; }
+  100% { transform: scale(0.95); background-color: #16a34a; border-color: #14532d; color: white; }
+}
+.animate-mark { 
+  animation: markFeijao 0.4s ease-out forwards; 
+  text-shadow: 1px 1px 0 #000;
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fdf6e3; border-left: 2px solid #c98a4b; }
+::-webkit-scrollbar-thumb { background: #b91c1c; border: 1px solid #5c2e0b;}
