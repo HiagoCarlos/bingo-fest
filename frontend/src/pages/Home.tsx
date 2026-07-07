@@ -104,7 +104,7 @@ export function Home() {
               <label className="font-pixel text-white text-shadow-sm text-[10px] uppercase">Seu Nick Habbo:</label>
               <input 
                 type="text" value={habboNick} onChange={(e) => setHabboNick(e.target.value)}
-                placeholder="Ex: chokito"
+                placeholder="Ex: hiagocarlos"
                 className="w-full bg-[#fdf6e3] border-4 border-[#5c2e0b] p-3 focus:outline-none focus:border-treinadores-red font-pixel text-xs text-black" maxLength={20} disabled={loading}
               />
             </div>
@@ -132,7 +132,7 @@ export function Home() {
       {/* MURAL DE REGRAS ABAIXO */}
       <div className="w-full max-w-4xl wood-panel mt-12 p-6 md:p-10 bg-[#fdf6e3] rounded-xl shadow-2xl flex flex-col z-10">
         <h2 className="font-pixel text-treinadores-darkRed text-xl md:text-2xl text-center drop-shadow-sm border-b-4 border-[#c98a4b] pb-6 mb-8">
-          MURAL DE INFORMAÇÕES
+          MURAL DE INFORMAÇOES
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
@@ -160,7 +160,7 @@ export function Home() {
             <h2 className="title-ribbon ribbon-blue font-pixel text-[10px] md:text-xs">PREMIAÇÃO</h2>
             <div className="cordel-paper p-5 pt-8 w-full text-center h-full">
               <p className="font-pixel text-[10px] text-[#5c2e0b] leading-relaxed">
-                A cada rodada vencida, o jogador garante Câmbios, Mobis Raros e Emblemas exclusivos do Arraiá da Companhia Treinadores. A premiação é paga no Habbo Hotel pelo organizador!
+                A cada rodada vencida, o jogador garante um HC do Arraiá da Companhia Treinadores.  
               </p>
             </div>
           </div>
@@ -180,7 +180,7 @@ export function Home() {
       {/* ASSINATURA */}
       <div className="mt-12 mb-4 text-center z-10">
         <span className="font-pixel text-[10px] md:text-xs text-[#5c2e0b] opacity-80 drop-shadow-sm">
-          DESENVOLVIDO POR HIAGOCARLOS
+          DESENVOLVIDO POR hiagocarlos &copy; 2024 - COMPANHIA TREINADORES
         </span>
       </div>
 
