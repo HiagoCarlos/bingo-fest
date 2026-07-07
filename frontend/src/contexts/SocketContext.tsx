@@ -1,7 +1,7 @@
 // src/contexts/SocketContext.tsx
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { io, Socket } from 'socket.io-client';
-
+const isProduction = import.meta.env.PROD;
 interface SocketContextData {
   socket: Socket | null;
   isConnected: boolean;
@@ -15,7 +15,8 @@ export function SocketProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // Conecta ao nosso backend Node.js
-    const socketInstance = io('http://localhost:3333');
+    const socketUrl = isProduction ? window.location.origin : 'http://localhost:3333';
+    const socketInstance = io(socketUrl);
     
     setSocket(socketInstance);
 
