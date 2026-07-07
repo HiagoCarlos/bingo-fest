@@ -15,13 +15,14 @@ Sistema de Bingo Multiplayer em tempo real com temática de Festa Junina. Desenv
 1. **Clone o repositório:**
    ```bash
    git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
-
+2. **Backend (Terminal 1):** 
 cd backend
 npm install
-# Crie um arquivo .env com: DATABASE_URL="postgresql://user:pass@localhost:5432/db" e PORT=3333
+Crie um arquivo .env com: DATABASE_URL="postgresql://user:pass@localhost:5432/db" e PORT=3333
 npx prisma migrate dev
 npm run dev
 
+3. **Frontend (Terminal 2):**
 cd frontend
 npm install
 # Crie um arquivo .env com: VITE_API_URL=http://localhost:3333/api
