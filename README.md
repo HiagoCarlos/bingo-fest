@@ -1,4 +1,4 @@
-# 🌽 Arraiá Bingo - Companhia Treinadores
+# 🌽 Arraiá Bingo
 
 Sistema de Bingo Multiplayer em tempo real com temática de Festa Junina. Desenvolvido para eventos interativos no Habbo Hotel, com validação anti-cheat, chat global e painel de controle Host.
 
