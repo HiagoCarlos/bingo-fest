@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(frontendPath));
 
   // 3. Qualquer link que o usuário digitar, o Express manda a tela do React (Home)
-  app.get('*', (req, res) => {
+  app.get(/(.*)/, (req, res) => {
     res.sendFile(path.join(frontendPath, 'index.html'));
   });
 }
