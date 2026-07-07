@@ -1,60 +1,35 @@
 # 🌽 Arraiá Bingo - Companhia Treinadores
 
-Um sistema completo de **Bingo Multiplayer em Tempo Real**, com temática de Festa Junina (Arraiá) e inspiração visual em Pixel Art/Habbo Hotel. Desenvolvido para gerenciar eventos interativos com sincronização via WebSockets, validação anti-cheat do lado do servidor e uma interface visualmente imersiva.
+Sistema de Bingo Multiplayer em tempo real com temática de Festa Junina. Desenvolvido para eventos interativos no Habbo Hotel, com validação anti-cheat, chat global e painel de controle Host.
 
-![Status](https://img.shields.io/badge/Status-Concluído-success)
-![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
-![Node.js](https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white)
-![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=flat&logo=socket.io&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)
+## ✨ Funcionalidades
+- 🕹️ **Jogadores:** Cartelas geradas automaticamente, auto-mark (marcação da pedra na tela), chat (Correio Elegante), áudio imersivo (sanfona e alertas) e efeitos visuais CSS (confetes, balões, pisca-pisca).
+- 👑 **Host (Admin):** Controle de sala (travar/destravar entradas a qualquer momento), sorteio de pedras, sistema de expulsão (kick), chat VIP em roxo e validação automática de BINGO que trava a sala.
 
----
+## 🛠️ Tecnologias
+- **Frontend:** React (Vite), TypeScript, Tailwind CSS, Socket.io-client, Canvas-Confetti.
+- **Backend:** Node.js, Express, Socket.io, Prisma ORM, PostgreSQL.
 
-## 🎯 Funcionalidades
+## 🚀 Como Executar
 
-### 🕹️ Visão do Jogador (Client)
-* **Cartelas Geradas Automaticamente:** Cada jogador recebe uma cartela 5x5 única.
-* **Auto-Mark (Marcação Automática):** O sistema marca os números automaticamente na cartela à medida que são sorteados.
-* **Correio Elegante (Chat Global):** Bate-papo em tempo real integrado.
-* **Mural de Informações:** Modal no estilo "Literatura de Cordel" com regras e premiações.
-* **Música e Efeitos Sonoros:** Player de áudio (Sanfona) e efeitos sonoros retrô (SFX) usando a Web Audio API.
-* **Efeitos Especiais (CSS):** Balões flutuantes, animações de brilho (glow), confetes na vitória e luzes pisca-pisca.
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
 
-### 👑 Visão do Administrador (Host Panel)
-* **Controle Total da Sala:** Capacidade de criar, excluir e monitorar as barracas (salas).
-* **Trava Dinâmica (Lock/Unlock):** O Host pode abrir ou fechar as entradas de novos jogadores a qualquer momento.
-* **Monitoramento ao Vivo:** Lista em tempo real de quem está online.
-* **Sistema de Punição (Kick):** Expulsão de jogadores bagunceiros com apenas um clique.
-* **Chat Destacado:** Mensagens do Host ganham a tag 👑 **DIRETORIA** na cor roxa para destaque no Correio Elegante.
-* **Validador Anti-Cheat (Bingo Automático):** O botão "Gritar Bingo" valida matematicamente a cartela no back-end. Se o jogador mentir, ele recebe um alerta; se for verdade, a sala é trancada e o jogo se encerra.
+cd backend
+npm install
+# Crie um arquivo .env com: DATABASE_URL="postgresql://user:pass@localhost:5432/db" e PORT=3333
+npx prisma migrate dev
+npm run dev
 
----
+cd frontend
+npm install
+# Crie um arquivo .env com: VITE_API_URL=http://localhost:3333/api
+npm run dev
+(Acesso ao Painel da Diretoria/Admin pela rota: http://localhost:5173/admin)
 
-## 🛠️ Tecnologias Utilizadas
 
-### Frontend
-* **React** (Vite)
-* **TypeScript**
-* **Tailwind CSS** (Para estilização, efeitos Neon/Glow e responsividade)
-* **Socket.io-client** (Comunicação em tempo real)
-* **Canvas-Confetti** (Efeitos visuais de vitória)
+## 👨‍💻 Autor
+- Hiago - Desenvolvedor Full Stack & Mobile
 
-### Backend
-* **Node.js** com **Express**
-* **TypeScript**
-* **Socket.io** (Servidor de WebSockets)
-* **Prisma ORM** (Modelagem de banco de dados)
-* **PostgreSQL** (Banco de dados relacional)
-
----
-
-## ⚙️ Como Executar o Projeto Localmente
-
-### Pré-requisitos
-* [Node.js](https://nodejs.org/en/) (Versão 18+)
-* Banco de Dados [PostgreSQL](https://www.postgresql.org/) rodando localmente ou na nuvem (ex: Supabase, Render).
-
-### 1. Clonando o Repositório
-```bash
-git clone [https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git](https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git)
-cd SEU_REPOSITORIO
+🌐 Portfólio: https://portfolio-novo-zeta.vercel.app
