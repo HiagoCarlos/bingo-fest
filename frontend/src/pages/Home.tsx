@@ -180,7 +180,7 @@ export function Home() {
       {/* ASSINATURA */}
       <div className="mt-12 mb-4 text-center z-10">
         <span className="font-pixel text-[10px] md:text-xs text-[#5c2e0b] opacity-80 drop-shadow-sm">
-          DESENVOLVIDO POR hiagocarlos &copy; 2024 - COMPANHIA TREINADORES
+          DESENVOLVIDO POR hiagocarlos &copy; 2026 - COMPANHIA TREINADORES
         </span>
       </div>
 
