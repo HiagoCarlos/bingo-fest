@@ -20,6 +20,7 @@ export function HostPanel() {
   const [history, setHistory] = useState<string[]>([]);
   const [chatMessages, setChatMessages] = useState<any[]>([]);
   const [currentMsg, setCurrentMsg] = useState('');
+  const [redirectCode, setRedirectCode] = useState('');
   
   const chatEndRef = useRef<HTMLDivElement>(null);
 
@@ -118,6 +119,15 @@ export function HostPanel() {
     }
   };
 
+  const handleRedirect = () => {
+    if (!redirectCode.trim()) return;
+    if (window.confirm(`Atenção: Teleportar todos os jogadores online agora para a sala ${redirectCode.toUpperCase()}?`)) {
+      socket?.emit('redirect_room', { roomId, newRoomCode: redirectCode.toUpperCase() });
+      setRedirectCode('');
+      alert('Ordem de teleporte enviada!');
+    }
+  };
+
   const handleKickPlayer = (nick: string) => {
     if(window.confirm(`Expulsar ${nick} da sala?`)) {
       socket?.emit('kick_player', { roomId, habboNick: nick });
@@ -162,6 +172,22 @@ export function HostPanel() {
                 </button>
               )}
             </div>
+
+            <div className="flex gap-2">
+              <input 
+                type="text" value={redirectCode} onChange={(e) => setRedirectCode(e.target.value)}
+                placeholder="CÓDIGO DA NOVA SALA (EX: FESTA20)" 
+                className="flex-1 p-3 border-4 border-[#c98a4b] font-pixel text-[10px] uppercase focus:outline-none"
+              />
+              <button 
+                onClick={handleRedirect} disabled={!redirectCode}
+                className="bg-purple-700 border-b-4 border-r-4 border-purple-900 active:translate-y-1 active:translate-x-1 text-white font-pixel text-[10px] px-4 uppercase disabled:opacity-50"
+              >
+                🚀 TELEPORTAR TODOS
+              </button>
+            </div>
+
+            
             
             {!gameStarted ? (
               <button 

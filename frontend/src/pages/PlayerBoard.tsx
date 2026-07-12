@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useSocket } from '../contexts/SocketContext';
 import { useBingoAudio } from '../hooks/useBingoAudio';
 import { useRetroAudio } from '../hooks/useRetroAudio';
+import { api } from '../services/api';
 import confetti from 'canvas-confetti';
 
 import logoGame from '../assets/Logo_Game.png';
@@ -50,7 +51,7 @@ export function PlayerBoard() {
         announceBall(ball);
       });
 
-      // NOVO: O slice(-40) faz com que o chat guarde no máximo as últimas 40 mensagens!
+      
       socket.on('receive_message', ({ habboNick, message }) => {
         setChatMessages((prev) => [...prev, { sender: habboNick, text: message }].slice(-40));
       });
@@ -89,10 +90,22 @@ export function PlayerBoard() {
         setCustomAlert("OLHA A COBRA! É MENTIRA! Sua cartela ainda não bateu.");
       });
 
+      socket.on('force_redirect', async (newRoomCode: string) => {
+        try {
+        
+          const response = await api.post('/players/join', { habboNick: player.habboNick, roomCode: newRoomCode });
+          const newPlayer = response.data;
+          navigate(`/room/${newPlayer.roomId}`, { state: { player: newPlayer } });
+        } catch (error) {
+          playError();
+          setCustomAlert('A Diretoria tentou te teleportar, mas a nova sala não existe ou está fechada! Você ficou de fora.');
+        }
+      });
+
       return () => {
         socket.off('new_ball'); socket.off('receive_message'); socket.off('player_joined');
         socket.off('player_kicked'); socket.off('room_closed'); socket.off('bingo_winner');
-        socket.off('bingo_invalid');
+        socket.off('bingo_invalid'); socket.off('force_redirect');
       };
     }
   }, [player, navigate, socket, announceBall, playError, playGoal]);

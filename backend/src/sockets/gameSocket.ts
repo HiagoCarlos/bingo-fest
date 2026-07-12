@@ -23,13 +23,13 @@ export function setupGameSockets(io: Server) {
       } catch (e) {}
     });
 
-    // EU TINHA APAGADO ISSO SEM QUERER! O MOTOR VOLTOU:
+   
     socket.on('start_game', async (roomId: string) => {
       try {
         await prisma.room.update({ where: { id: roomId }, data: { status: 'PLAYING' } });
-        DrawService.initializeRoom(roomId); // Isso enche a Urna de bolinhas
+        DrawService.initializeRoom(roomId); 
         io.to(roomId).emit('game_started');
-        io.to(roomId).emit('room_lock_state', true); // Trava a sala ao iniciar
+        io.to(roomId).emit('room_lock_state', true); 
       } catch (e) {}
     });
 
@@ -84,6 +84,10 @@ export function setupGameSockets(io: Server) {
 
     socket.on('delete_room', (roomId: string) => {
       io.to(roomId).emit('room_closed'); 
+    });
+
+    socket.on('redirect_room', ({ roomId, newRoomCode }) => {
+      io.to(roomId).emit('force_redirect', newRoomCode);
     });
 
   });
