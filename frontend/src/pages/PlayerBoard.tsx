@@ -50,12 +50,13 @@ export function PlayerBoard() {
         announceBall(ball);
       });
 
+      // NOVO: O slice(-40) faz com que o chat guarde no máximo as últimas 40 mensagens!
       socket.on('receive_message', ({ habboNick, message }) => {
-        setChatMessages((prev) => [...prev, { sender: habboNick, text: message }]);
+        setChatMessages((prev) => [...prev, { sender: habboNick, text: message }].slice(-40));
       });
 
       socket.on('player_joined', (nick: string) => {
-        setChatMessages((prev) => [...prev, { sender: 'Sistema', text: `🪗 ${nick} chegou no arraiá`, isSystem: true }]);
+        setChatMessages((prev) => [...prev, { sender: 'Sistema', text: `🪗 ${nick} chegou no arraiá`, isSystem: true }].slice(-40));
       });
 
       socket.on('player_kicked', (nick: string) => {
@@ -63,7 +64,7 @@ export function PlayerBoard() {
           playError();
           setCustomAlert('VOCÊ FOI CONVIDADO A SE RETIRAR DA FESTA (EXPULSO).');
         } else {
-          setChatMessages((prev) => [...prev, { sender: 'Sistema', text: `[-] ${nick} foi enxotado`, isSystem: true }]);
+          setChatMessages((prev) => [...prev, { sender: 'Sistema', text: `[-] ${nick} foi enxotado`, isSystem: true }].slice(-40));
         }
       });
 
@@ -294,7 +295,8 @@ export function PlayerBoard() {
 
           </div>
 
-          <div className="w-full md:w-[280px] shrink-0 bg-white border-4 border-[#c98a4b] flex flex-col h-[250px] md:h-auto rounded-lg overflow-hidden">
+          {/* NOVO: Fixado md:h-[530px] para forçar a barra de rolagem e impedir a tela de quebrar! */}
+          <div className="w-full md:w-[280px] shrink-0 bg-white border-4 border-[#c98a4b] flex flex-col h-[250px] md:h-[530px] rounded-lg overflow-hidden">
             <div className="bg-[#c98a4b] p-2 border-b-4 border-[#5c2e0b] text-center">
               <span className="font-pixel text-[10px] text-white text-shadow-sm">CORREIO ELEGANTE</span>
             </div>
